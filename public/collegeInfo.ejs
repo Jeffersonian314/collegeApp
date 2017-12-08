@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Results</title>
+  </head>
+  <body>
+      
+  <h1>Choose a college of your choice</h1>
+  <% console.log(data.results[0].school.name) %>
+  
+  <% var schools = data.results.filter(function(result){ return true })  %>
+  <% console.log(schools)  %>
+  
+  <ol>
+  <% for (var i = 0; i < schools.length; i++) { %>
+    <% var name = schools[i].school.name %>
+    <li>
+      <a href="<%= `/singleCollege/${name.replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20")}` %>" class = 'collegereturn'>
+        <%= name %>
+      </a>
+    </li>
+  <% } %>
+  </ol>
+  
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Admissions</a></li>
+    <li><a href="#">Financial Aid</a></li>
+    <li><a href="#">Test Score</a></li>
+
+  </ul>
+  
+  
+  
+  <script>
+    function filterData(name){
+      alert(name)
+    }
+  </script>
+  </body>
+</html>
+
+
