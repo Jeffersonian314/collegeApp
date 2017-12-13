@@ -8,7 +8,7 @@ var axios = require('axios')
 var app = express()
 //configuration (setup for our app)
 app.set('view engine', 'ejs')
-app.set(logger('dev'))
+app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static("public"))
@@ -25,22 +25,27 @@ app.get('/singleCollege/:collegeName', function(request,response){
     var apiKey = 'SfFpDoUssAhPA5WWP8UXoB1O15E5qF4Tct5AkJ3w'
     var url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}&school.name=${input}`
     
+    console.log(url)
+    
     axios.get(url)
     .then(function(res){
-        // console.log(response.data)
+        console.log(res.data)
         
+        
+        // var data = JSON.parse(res.data)
         response.render('singleCollege.ejs', {
-            data: res.data,
-            collegeName: input
+            data: res.data.results[0],
+            collegeName: request.params.collegeName
         })
-    })    
+    })
+    .catch(function(error){ console.log(error) })
 })
 
 app.post('/results', function(request, response){
     var input = request.body.college
     .replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20").replace(" ", "%20")
     var apiKey = 'SfFpDoUssAhPA5WWP8UXoB1O15E5qF4Tct5AkJ3w'
-    var url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}&school.name=${input}`
+    var url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}&school.state=${input}`
     
     axios.get(url)
     .then(function(res){
@@ -59,3 +64,5 @@ app.listen(port, function(){
 //app.listen makes the computer wait and "listen"
     console.log('App is running on port' + port)
 })
+
+//* https://api.data.gov/ed/collegescorecard/v1/schools?api_key=SfFpDoUssAhPA5WWP8UXoB1O15E5qF4Tct5AkJ3w&school.state=ca

@@ -1,10 +1,39 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title> </title>
+    <title><%= collegeName %></title>
+    <link rel='stylesheet' href = 'css/singleCollege.css' type="text/css">
   </head>
   <body>
-    <h1><%= collegeName %</h1>
-    <p><%= JSON.stringify(data, null, 2) %></p>
+    <% var mostRecentYear = data['2015'] %>
+    <h1 class = 'title'><%= collegeName %></h1>
+    <br />
+    <h2>School Info</h2>
+  
+    <h3>Financial Aid</h3>
+    <p> Pell grant rate: <%= JSON.stringify(mostRecentYear.aid.pell_grant_rate, null, 2) %></p>
+    
+    <h3>Student Cost(Tuition)</h3>
+    <%= JSON.stringify( '$' + mostRecentYear.cost.tuition.out_of_state, null, 2) %>
+    
+    <h3>Admissions</h3>
+    <h4>SAT scores:</h4>
+    <%= JSON.stringify(mostRecentYear.admissions.sat_scores.average.overall, null, 2) %>
+    <h4>ACT scores:</h4>
+    <p>writing:</p>
+    <%= JSON.stringify(mostRecentYear.admissions.act_scores.midpoint.writing, null, 2) %>
+    <p>english:</p>
+    <%= JSON.stringify(mostRecentYear.admissions.act_scores.midpoint.english, null, 2) %>
+    <p>math:</p>
+    <%= JSON.stringify(mostRecentYear.admissions.act_scores.midpoint.math, null, 2) %>
+    <p>cumulative:</p>
+    <%= JSON.stringify(mostRecentYear.admissions.act_scores.midpoint.cumulative, null, 2) %>
+  
+    <h3>Price Calculator</h3>
+    <%= JSON.stringify(data.school.price_calculator_url, null, 2)%>
+    
+    <h3>Repayment</h3>
+    <%= JSON.stringify(mostRecentYear.repayment.repayment_cohort['5_year_declining_balance'], null, 2)%>
+    
   </body>
 </html>
