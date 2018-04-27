@@ -32,15 +32,38 @@
 <div id="map"></div>
     <script>
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
+      var locations = [
+      ['UC Santa Barbara', 34.413963, -119.848947, 4],
+      ['UC Santa Cruz', 36.991474, -122.058297, 5],
+      ['Santa Clara University', 37.349642, -121.938987, 3],
+      ['Stanford', 37.427475, -122.169719, 2],
+      ['UCLA', 34.068921, -118.445181, 1],
+      ['HollyWood', 34.092809, -118.328661, 6]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 6,
+      center: new google.maps.LatLng(36.778261, -119.417932),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
       }
     </script>
 
