@@ -5,14 +5,20 @@
     <style>
       #map {
         height: 400px;
-        width: 100%;
+        width: 900px;
+        float: right;
+        margin-bottom: 50px;
+        flex: 3;
        }
     </style>
 
   </head>
-  <body>
+  <body style = 'background-color: #f9f7f7;'>
       
-  <h1>Choose a college of your choice</h1>
+  <h1 style = 'text-align: center;'>Choose a college of your choice</h1>
+  
+  
+  </ol> <div id="map"></div>
   <% console.log(data.results[0].school.name) %>
   
   <% var schools = data.results.filter(function(result){ return true })  %>
@@ -27,23 +33,36 @@
       </a>
     </li>
   <% } %>
-  </ol>
  
-<div id="map"></div>
+  
     <script>
       function initMap() {
       var locations = [
-      ['UC Santa Barbara', 34.413963, -119.848947, 4],
-      ['UC Santa Cruz', 36.991474, -122.058297, 5],
-      ['Santa Clara University', 37.349642, -121.938987, 3],
-      ['Stanford', 37.427475, -122.169719, 2],
-      ['UCLA', 34.068921, -118.445181, 1],
-      ['HollyWood', 34.092809, -118.328661, 6]
+      ['Beauty Schools of America-Homestead ', 25.475842, -80.446117, 4],
+      ['University of South Florida-Sarasota-Manatee ', 27.391622, -82.563058, 5],
+      ['Academy of Career Training ', 28.306147, -81.439315, 3],
+      ['Miami Regional University ', 25.810676, -80.266975, 2],
+      ['Wolford College ', 26.269147, -81.792987, 1],
+      ['Florida School of Massage ', 29.593450, -82.338315, 6],
+      ['Florida School of Traditional Midwifery', 29.652286, -82.315843, 7],
+      ['Emerald Coast Technical College', 30.732749, -86.128616, 8],
+      ['Summit Salon Academy', 47.223439, -122.472229, 9],
+      ['Tenaj Salon Institute', 28.929936, -82.028105, 10],
+      ['Empire Beauty School-West Palm ', 26.705671, -80.107628,11],
+      ['Future-Tech Institute ', 25.764678, -80.251320,12],
+      ['Marchman Technical Education Center ',28.270766, -82.692010, 13],
+      ['Keiser University-Ft Myers ',26.629122, -81.803649, 14],
+      ['Rasmussen College-New Port Richey ', 28.636372, -81.390983, 15],
+      ['Southeastern College-New Port Richey ',26.702192, -80.085957, 16],
+      ['Strayer University-Tampa East Campus ', 27.997406, -82.359926, 17],
+      ['Strayer University-Baymeadows Campus ', 30.216193, -81.569515, 18],
+      ['Orion College ', 26.170019, -80.202466, 19],
+      ['Virginia College-Jacksonville ', 30.291618, -81.603257, 20]
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 6,
-      center: new google.maps.LatLng(36.778261, -119.417932),
+      zoom: 7,
+      center: new google.maps.LatLng(27.664827, -81.515754),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
